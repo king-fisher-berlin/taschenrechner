@@ -3,11 +3,23 @@ input.onButtonPressed(Button.A, function () {
     basic.showNumber(A)
 })
 input.onGesture(Gesture.Shake, function () {
-    A = 0
-    B = 0
-    basic.showNumber(A)
+    if (Operator == 1) {
+        Ergebnis = A + B
+    } else if (Operator == 2) {
+        Ergebnis = A - B
+    } else if (Operator == 3) {
+        Ergebnis = A * B
+    } else if (Operator == 0) {
+        Ergebnis = 0
+    } else {
+        Ergebnis = A / B
+    }
+    basic.showNumber(Ergebnis)
 })
 input.onButtonPressed(Button.AB, function () {
+    if (Operator == 4) {
+        Operator = 0
+    }
     Operator += 1
     if (Operator == 1) {
         basic.showLeds(`
@@ -17,7 +29,6 @@ input.onButtonPressed(Button.AB, function () {
             . . # . .
             . . # . .
             `)
-        Ergebnis = A + B
     } else if (Operator == 2) {
         basic.showLeds(`
             . . . . .
@@ -26,7 +37,6 @@ input.onButtonPressed(Button.AB, function () {
             . . . . .
             . . . . .
             `)
-        Ergebnis = A - B
     } else if (Operator == 3) {
         basic.showLeds(`
             # . . . #
@@ -35,7 +45,6 @@ input.onButtonPressed(Button.AB, function () {
             . # . # .
             # . . . #
             `)
-        Ergebnis = A * B
     } else {
         basic.showLeds(`
             . . # . .
@@ -44,10 +53,7 @@ input.onButtonPressed(Button.AB, function () {
             . . . . .
             . . # . .
             `)
-        Ergebnis = A / B
-        Operator = 0
     }
-    basic.showNumber(Ergebnis)
 })
 input.onButtonPressed(Button.B, function () {
     B += 1
